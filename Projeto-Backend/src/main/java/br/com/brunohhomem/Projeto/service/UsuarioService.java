@@ -18,6 +18,10 @@ public class UsuarioService {
         return usuarios.stream().map(UsuarioDTO::new).toList();
     }
 
+    public UsuarioDTO buscar(Long id){
+        return new UsuarioDTO(repository.findById(id).get());
+    }
+
     public void inserir(UsuarioDTO dto){
         UsuarioEntity entity = new UsuarioEntity(dto);
         repository.save(entity);
@@ -31,9 +35,5 @@ public class UsuarioService {
     public void excluir(Long id){
         UsuarioEntity entity = repository.findById(id).get();
         repository.delete(entity);
-    }
-
-    public UsuarioDTO buscar(Long id){
-        return new UsuarioDTO(repository.findById(id).get());
     }
 }
